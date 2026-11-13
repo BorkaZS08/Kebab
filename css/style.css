@@ -11,27 +11,22 @@ body{
 }
 
 .cim{
-    margin-top: 300px;
+    margin-top: 140px;
     font-size: 80px;
 }
 
-.jatek{
+.jatek ,.dropd ,.nehezseg:hover{
     background-color: rgba(242, 124, 26);
 }
 
-.jatek:hover{
+.jatek:hover , .nehezseg{
     background-color: rgb(100, 100, 100);
 }
 
-.nehezseg{
-    background-color: rgb(100, 100, 100);
+.nev{
+    color:  rgb(255, 115, 0);
 }
 
-.nehezseg:hover{
-    background-color: rgba(242, 124, 26);
+.logo{
+    border-image-width: 300px;
 }
-
-.dropd{
-    background-color: rgba(242, 124, 26);
-}
-
