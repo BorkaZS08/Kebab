@@ -6,4 +6,32 @@ body{
     line-height: 1.5;
     font-style: normal;
     font-weight: 400;
+    background-color: rgba(65, 65, 65, 0.5);
+    
 }
+
+.cim{
+    margin-top: 300px;
+    font-size: 80px;
+}
+
+.jatek{
+    background-color: rgba(242, 124, 26);
+}
+
+.jatek:hover{
+    background-color: rgb(100, 100, 100);
+}
+
+.nehezseg{
+    background-color: rgb(100, 100, 100);
+}
+
+.nehezseg:hover{
+    background-color: rgba(242, 124, 26);
+}
+
+.dropd{
+    background-color: rgba(242, 124, 26);
+}
+
