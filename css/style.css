@@ -1,32 +1,115 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
-body{
+body {
+    position: relative;
+    min-height: 100vh;
+    margin: 0;
     font-family: "Inter", sans-serif;
     font-size: 20px;
     line-height: 1.5;
     font-style: normal;
     font-weight: 400;
-    background-color: rgba(65, 65, 65, 0.5);
-    
+    overflow-x: hidden;
+    overflow: hidden;
 }
 
-.cim{
-    margin-top: 140px;
+.page-bg {
+    position: fixed;
+    inset: 0;
+    background-image: 
+        linear-gradient(rgba(65, 65, 65, 0.5), rgba(65, 65, 65, 0.5)),
+        url(../img/kebab-background.jpeg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    filter: blur(3px);
+    transform: scale(1.08);
+    z-index: 0;
+}
+
+#menu-screen,
+#game-screen,
+main,
+header,
+footer {
+    position: relative;
+    z-index: 1;
+}
+
+.cim {
+    margin-top: 100px;
     font-size: 80px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
 }
 
-.jatek ,.dropd ,.nehezseg:hover{
-    background-color: rgba(242, 124, 26);
+.jatek, .dropd, .nehezseg:hover {
+    background-color: rgb(242, 124, 26);
 }
 
-.jatek:hover , .nehezseg{
+.jatek:hover, .nehezseg {
     background-color: rgb(100, 100, 100);
 }
 
-.nev{
-    color:  rgb(255, 115, 0);
+.dropd .dropdown-item:hover {
+    background-color: rgb(100, 100, 100);
 }
 
-.logo{
-    border-image-width: 300px;
+.nev {
+    color: rgb(255, 115, 0);
+}
+
+.counter {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 300px;
+    background: #b6b4b4;
+    z-index: 2;
+}
+
+.kebabGrill, .kebabGrill-with-kebab {
+    position: absolute;
+    left: -90px;
+    bottom: 50px;
+    z-index: 3;
+    width: 875px;
+    max-width: 55vw;
+}
+
+.kebabGrill img, .kebabGrill-with-kebab img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.ingredients-nokebab, .ingredients-kebab {
+    position: absolute;
+    left: 670px;
+    bottom: 80px;
+    z-index: 3;
+    width: 680px;
+    max-width: 38vw;
+}
+
+.ingredients-nokebab img, .ingredients-kebab img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.empty-plate, .kebab-plate {
+    position: absolute;
+    right: 60px;
+    bottom: 50px;
+    z-index: 3;
+    width: 400px;
+    max-width: 55vw;
+}
+
+.empty-plate img, .kebab-plate img {
+    display: block;
+    width: 100%;
+    height: auto;
 }
