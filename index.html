@@ -10,56 +10,78 @@
 <body>
     <div class="page-bg"></div>
 
-    <div id="menu-screen">
+    <div id="menu-screen" class="screen">
         <header>
             <div class="container">
-    <div class="row">
-        <div class="col-12 text-center">
-            <h1 class="text-center cim text-white fw-bold p-4"><span class="nev">GoRka </span>Kebab</h1>
-            <img src="img/gorkakebab (2).png" alt="GoRka Kebab Logo" class="img-fluid" style="max-width: 250px;">
-        </div>
-    </div>
-</div>
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h1 class="text-center cim text-white fw-bold p-4 menu-title"><span class="nev">GoRka </span>Kebab</h1>
+                        <img src="img/gorkakebab (2).png" alt="GoRka Kebab Logo" class="img-fluid menu-logo" style="max-width: 250px;">
+                    </div>
+                </div>
+            </div>
         </header>
         <main>
             <section class="text-center mt-5">
-                <button id="start-btn" type="button" class="btn text-white p-3 w-25 fs-3 fw-bold jatek">Játék</button><br>
-                
-                <div class="dropdown d-inline-block w-25 mt-5">
+                <button id="start-btn" type="button" class="btn text-white p-3 w-25 fs-3 fw-bold jatek menu-item" style="--delay: 0.9s">Játék</button><br>
+
+                <div class="dropdown d-inline-block w-25 mt-5 menu-item" style="--delay: 1.05s">
                     <button id="difficulty-btn" class="btn nehezseg text-white p-3 w-100 fs-3 fw-bold dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Nehézség
                     </button>
                     <ul class="dropdown-menu dropd w-100 text-center">
-                        <li><a class="dropdown-item text-white fw-bold" href="#" data-diff="Könnyű">Könnyű</a></li>
-                        <li><a class="dropdown-item text-white fw-bold" href="#" data-diff="Közepes">Közepes</a></li>
-                        <li><a class="dropdown-item text-white fw-bold" href="#" data-diff="Nehéz">Nehéz</a></li>
+                        <li><a class="dropdown-item text-white fw-bold" href="#">Könnyű</a></li>
+                        <li><a class="dropdown-item text-white fw-bold" href="#">Közepes</a></li>
+                        <li><a class="dropdown-item text-white fw-bold" href="#">Nehéz</a></li>
                     </ul>
                 </div>
             </section>
         </main>
     </div>
 
-    <div id="game-screen" class="d-none">
-        <header class="p-3">
-            <button id="back-btn" type="button" class="btn nehezseg text-white fw-bold">← Vissza a menübe</button>
-        </header>
-        <main>
-            <section>
-                <div class="counter fixed-bottom">
-                    <div class="kebabGrill"><img src="img/kebab-grill.png" alt="Kebab-grill"></div>
-                    <div class="kebabGrill-with-kebab d-none"><img src="img/kebab-grill-with-kebab.png" alt="Kebab-grill-with-kebab"></div>
-                    <div class="ingredients-nokebab"><img src="img/ingredients-nokebab.png" alt="ingredients-no-kebab"></div>
-                    <div class="ingredients-kebab d-none"><img src="img/ingredients-withkebab.png" alt="ingredients-with-kebab"></div>
-                    <div class="empty-plate"><img src="img/empty-plate.png" alt="empty-plate"></div>
-                    <div class="kebab-plate d-none"><img src="img/kebab-plate.png" alt="kebab-plate"></div>
+    <div id="game-screen" class="screen d-none">
+        <div class="game-topbar">
+            <button id="back-btn" type="button" class="btn nehezseg text-white fw-bold">← Menü</button>
+            <span class="diff-badge text-white fw-bold">Nehézség: <span id="game-difficulty"></span></span>
+        </div>
+
+        <div class="kitchen">
+            <div class="grill-area">
+                <img class="grill-empty" src="img/kebab-grill.png" alt="Kebab-grill">
+                <img class="grill-full d-none" src="img/kebab-grill-with-kebab.png" alt="Kebab-grill hússal">
+            </div>
+
+            <div class="order-rail"></div>
+            <div class="orders">
+            </div>
+
+            <div class="counter"></div>
+
+            <div class="tray-area">
+                <img class="tray-empty" src="img/ingredients-nokebab.png" alt="Hozzávalók">
+                <img class="tray-full d-none" src="img/ingredients-withkebab.png" alt="Hozzávalók hússal">
+            </div>
+
+            <div class="serve-area">
+                <div class="contents-label">Kebab tartalma:</div>
+                <div class="contents-panel">
+                    <span></span><span></span><span></span><span></span><span></span>
                 </div>
-            </section>
-        </main>
+                <div class="plate-area">
+                    <img class="plate-empty" src="img/empty-plate.png" alt="Üres tányér">
+                    <img class="plate-full d-none" src="img/kebab-plate.png" alt="Kebab a tányéron">
+                </div>
+            </div>
+
+            <div class="trash-area" title="Kuka">
+                <span class="trash-placeholder">🗑</span>
+            </div>
+        </div>
     </div>
 
-    <footer></footer>
-
     <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/Screen.js"></script>
+    <script src="js/Difficulty.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>
