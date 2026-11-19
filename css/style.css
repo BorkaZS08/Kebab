@@ -312,6 +312,34 @@ header {
 .contents-panel span:nth-child(4) { width: 70%; }
 .contents-panel span:nth-child(5) { width: 50%; }
 
+.pita-area {
+    position: absolute;
+    left: 52vw;
+    bottom: 6vh;
+    width: min(12vw, 22vh);
+    transform: translateX(-50%);
+    z-index: 3;
+}
+
+.pita-area img {
+    display: block;
+    width: 100%;
+    max-width: 40%;
+    height: auto;
+    cursor: pointer;
+    transform-origin: bottom center;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.pita-area img:hover {
+    transform: translateY(-6px) scale(1.04);
+    filter: drop-shadow(0 0 12px rgba(255, 170, 60, 0.85));
+}
+
+.pita-area img:active {
+    transform: scale(0.96);
+}
+
 .plate-area {
     --plate-w: min(26vw, 36vh * 1.33);
     width: var(--plate-w);
@@ -361,12 +389,17 @@ header {
         height: 24vh;
     }
 
-    .tray-area {
-        width: min(52vw, 22vh * 3);
+      .tray-area {
+        width: min(44vw, 22vh * 3);
         bottom: 5vh;
     }
 
-    .serve-area { left: 70vw; }
+    .pita-area {
+        width: min(10vw, 20vh);
+        bottom: 5vh;
+    }
+
+    .serve-area { left: 72vw; }
 
     .contents-panel {
         width: 13vw;
@@ -395,6 +428,7 @@ header {
 #game-screen.is-entering .order-ticket:nth-child(2) { animation-delay: 0.6s; }
 #game-screen.is-entering .order-ticket:nth-child(3) { animation-delay: 0.45s; }
 #game-screen.is-entering .game-topbar { animation: fadeIn 0.4s 0.6s both; }
+#game-screen.is-entering .pita-area { animation: stackDrop 0.7s 0.35s cubic-bezier(0.3, 1.4, 0.5, 1) both; }
 
 @keyframes slideUp {
     from { transform: translateY(100%); }
@@ -421,6 +455,13 @@ header {
     60%  { opacity: 1; transform: rotate(6deg); }
     80%  { transform: rotate(-3deg); }
     100% { opacity: 1; transform: none; }
+}
+
+@keyframes stackDrop {
+    0%   { opacity: 0; transform: translate(-50%, -120px) scaleY(1.1); }
+    60%  { opacity: 1; transform: translate(-50%, 0) scaleY(0.85); }
+    80%  { transform: translate(-50%, -6px) scaleY(1.04); }
+    100% { opacity: 1; transform: translate(-50%, 0) scaleY(1); }
 }
 
 @media (prefers-reduced-motion: reduce) {
