@@ -315,8 +315,8 @@ header {
 .pita-area {
     position: absolute;
     left: 52vw;
-    bottom: 6vh;
-    width: min(12vw, 22vh);
+    bottom: 5vh;
+    width: min(16vw, 28vh);
     transform: translateX(-50%);
     z-index: 3;
 }
@@ -324,7 +324,7 @@ header {
 .pita-area img {
     display: block;
     width: 100%;
-    max-width: 40%;
+    max-width: 100%;
     height: auto;
     cursor: pointer;
     transform-origin: bottom center;
@@ -395,7 +395,7 @@ header {
     }
 
     .pita-area {
-        width: min(10vw, 20vh);
+        width: min(11vw, 22vh);
         bottom: 5vh;
     }
 
