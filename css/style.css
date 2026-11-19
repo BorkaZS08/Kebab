@@ -9,14 +9,13 @@ body {
     line-height: 1.5;
     font-style: normal;
     font-weight: 400;
-    overflow-x: hidden;
     overflow: hidden;
 }
 
 .page-bg {
     position: fixed;
     inset: 0;
-    background-image: 
+    background-image:
         linear-gradient(rgba(65, 65, 65, 0.5), rgba(65, 65, 65, 0.5)),
         url(../img/kebab-background.jpeg);
     background-repeat: no-repeat;
@@ -27,19 +26,42 @@ body {
     z-index: 0;
 }
 
-#menu-screen,
-#game-screen,
+.screen,
 main,
-header,
-footer {
+header {
     position: relative;
     z-index: 1;
 }
 
+#menu-screen {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .cim {
-    margin-top: 10px;
-    font-size: 80px;
+    margin: 0 0 2vh;
+    font-size: clamp(36px, 9vh, 80px);
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.menu-logo {
+    max-width: 250px;
+    max-height: 30vh;
+}
+
+.menu-buttons {
+    margin-top: 5vh;
+}
+
+.menu-dropdown {
+    margin-top: 3vh;
+}
+
+.menu-btn {
+    font-size: clamp(18px, 3.5vh, 28px);
+    padding: 1.5vh 16px;
 }
 
 .jatek, .dropd, .nehezseg:hover {
@@ -58,62 +80,353 @@ footer {
     color: rgb(255, 115, 0);
 }
 
-.counter {
+.jatek, .nehezseg {
+    transition: background-color 0.2s, transform 0.15s ease;
+}
+
+.jatek:hover, .nehezseg:hover {
+    transform: scale(1.04);
+}
+
+.jatek:active, .nehezseg:active {
+    transform: scale(0.97);
+}
+
+.is-entering .menu-title {
+    animation: dropIn 0.7s cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+}
+
+.is-entering .menu-logo {
+    animation:
+        popIn 0.8s 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.3) both,
+        float 3.2s 1.3s ease-in-out infinite;
+}
+
+.is-entering .menu-item {
+    animation: riseIn 0.55s var(--delay, 0.9s) ease-out both;
+}
+
+@keyframes dropIn {
+    from { opacity: 0; transform: translateY(-80px); }
+    to   { opacity: 1; transform: none; }
+}
+
+@keyframes popIn {
+    0%   { opacity: 0; transform: scale(0.3) rotate(-15deg); }
+    70%  { opacity: 1; transform: scale(1.08) rotate(3deg); }
+    100% { opacity: 1; transform: none; }
+}
+
+@keyframes float {
+    0%, 100% { translate: 0 0; }
+    50%      { translate: 0 -10px; }
+}
+
+@keyframes riseIn {
+    from { opacity: 0; transform: translateY(40px); }
+    to   { opacity: 1; transform: none; }
+}
+
+
+.screen.is-leaving {
+    animation: screenOut 0.4s ease-in forwards;
+    pointer-events: none;
+}
+
+@keyframes screenOut {
+    to { opacity: 0; transform: scale(0.96); }
+}
+
+
+#game-screen {
     position: fixed;
+    inset: 0;
+}
+
+.kitchen {
+    position: absolute;
+    inset: 0;
+    --counter-h: 32vh;
+}
+
+.game-topbar {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    z-index: 20;
+}
+
+.game-topbar .btn {
+    font-size: 16px;
+}
+
+.diff-badge {
+    font-size: 16px;
+    background: rgba(40, 40, 40, 0.75);
+    border-radius: 6px;
+    padding: 6px 12px;
+}
+
+.counter {
+    position: absolute;
     left: 0;
     right: 0;
     bottom: 0;
-    width: 100%;
-    height: 300px;
+    height: var(--counter-h);
     background: #b6b4b4;
+    box-shadow: 0 -6px 0 #9c9a9a;
     z-index: 2;
 }
 
-.kebabGrill, .kebabGrill-with-kebab {
+.grill-area {
     position: absolute;
-    left: -90px;
-    bottom: 50px;
+    left: 2vw;
+    bottom: calc(var(--counter-h) - 4vh);
+    height: 64vh;
+    max-width: 42vw;
     z-index: 3;
-    width: 875px;
-    max-width: 55vw;
 }
 
-.kebabGrill img, .kebabGrill-with-kebab img {
+.grill-area img {
+    display: block;
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.order-rail {
+    position: absolute;
+    top: 5vh;
+    left: 30vw;
+    right: 0;
+    height: 8px;
+    background: #d9d9d9;
+    border-bottom: 2px solid #8f8f8f;
+    border-radius: 4px 0 0 4px;
+    z-index: 2;
+}
+
+.orders {
+    position: absolute;
+    top: calc(5vh + 4px);
+    right: 1.5vw;
+    display: flex;
+    gap: 1.5vw;
+    z-index: 3;
+}
+
+.order-ticket {
+    width: 10vw;
+    height: 26vh;
+    background: #f4f1e8;
+    border-top: 3px solid #333;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 10px;
+    transform-origin: top center;
+    font-size: clamp(11px, 1vw, 16px);
+}
+
+.order-title {
+    font-weight: 700;
+    border-bottom: 1px solid #333;
+    margin-bottom: 8px;
+    white-space: nowrap;
+}
+
+.order-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 70%;
+}
+
+.order-lines span {
+    height: 2px;
+    background: #444;
+}
+
+.order-timer {
+    margin-top: auto;
+    font-weight: 600;
+}
+
+.tray-area {
+    position: absolute;
+    left: 2vw;
+    bottom: 6vh;
+    width: min(44vw, 24vh * 3);
+    z-index: 3;
+}
+
+.tray-area img {
     display: block;
     width: 100%;
     height: auto;
 }
 
-.ingredients-nokebab, .ingredients-kebab {
+.serve-area {
     position: absolute;
-    left: 670px;
-    bottom: 80px;
+    left: 74vw;
+    bottom: 2vh;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     z-index: 3;
-    width: 680px;
-    max-width: 38vw;
 }
 
-.ingredients-nokebab img, .ingredients-kebab img {
+.contents-label {
+    color: #fff;
+    font-size: clamp(12px, 1vw, 16px);
+    font-weight: 600;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+.contents-panel {
+    width: 10vw;
+    height: 16vh;
+    background: linear-gradient(#c9c9c9, #a3a3a3);
+    border-radius: 4px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    position: relative;
+    z-index: 4;
+}
+
+.contents-panel span {
+    height: 4px;
+    border-radius: 2px;
+    background: #ececec;
+}
+
+.contents-panel span:nth-child(4) { width: 70%; }
+.contents-panel span:nth-child(5) { width: 50%; }
+
+.plate-area {
+    --plate-w: min(26vw, 36vh * 1.33);
+    width: var(--plate-w);
+    --plate-pull: -0.22;
+    margin-top: calc(var(--plate-w) * var(--plate-pull));
+}
+
+.plate-area img {
     display: block;
     width: 100%;
     height: auto;
 }
 
-.empty-plate, .kebab-plate {
+.trash-area {
     position: absolute;
-    right: 60px;
-    bottom: 50px;
+    right: 1.5vw;
+    bottom: 2vh;
+    width: 10vw;
+    height: 7vw;
+    max-height: 14vh;
+    background: #8f8f8f;
+    border: 3px solid #5f5f5f;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     z-index: 3;
-    width: 400px;
-    max-width: 55vw;
 }
 
-.empty-plate img, .kebab-plate img {
-    display: block;
-    width: 100%;
-    height: auto;
+.trash-placeholder {
+    font-size: clamp(24px, 3vw, 48px);
+    opacity: 0.85;
 }
 
-.logo{
-    width: 40%;
+@media (max-width: 1199px) {
+    .kitchen { --counter-h: 30vh; }
+
+    .grill-area {
+        height: 58vh;
+        max-width: 40vw;
+    }
+
+    .order-rail { left: 38vw; }
+
+    .order-ticket {
+        width: 13vw;
+        height: 24vh;
+    }
+
+    .tray-area {
+        width: min(52vw, 22vh * 3);
+        bottom: 5vh;
+    }
+
+    .serve-area { left: 70vw; }
+
+    .contents-panel {
+        width: 13vw;
+        height: 15vh;
+    }
+
+    .plate-area {
+        --plate-w: min(26vw, 30vh * 1.33);
+        --plate-pull: -0.14;
+    }
+
+    .trash-area {
+        width: 11vw;
+        height: 9vw;
+    }
+}
+
+#game-screen.is-entering .counter     { animation: slideUp 0.5s ease-out both; }
+#game-screen.is-entering .grill-area  { animation: slideRight 0.6s 0.15s cubic-bezier(0.2, 0.9, 0.3, 1.1) both; }
+#game-screen.is-entering .tray-area   { animation: riseIn 0.5s 0.3s ease-out both; }
+#game-screen.is-entering .serve-area  { animation: riseInCentered 0.5s 0.4s ease-out both; }
+#game-screen.is-entering .trash-area  { animation: riseIn 0.5s 0.5s ease-out both; }
+#game-screen.is-entering .order-rail  { animation: fadeIn 0.4s 0.3s both; }
+#game-screen.is-entering .order-ticket { animation: swingIn 0.7s ease-out both; }
+#game-screen.is-entering .order-ticket:nth-child(1) { animation-delay: 0.75s; }
+#game-screen.is-entering .order-ticket:nth-child(2) { animation-delay: 0.6s; }
+#game-screen.is-entering .order-ticket:nth-child(3) { animation-delay: 0.45s; }
+#game-screen.is-entering .game-topbar { animation: fadeIn 0.4s 0.6s both; }
+
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to   { transform: none; }
+}
+
+@keyframes slideRight {
+    from { opacity: 0; transform: translateX(-60%); }
+    to   { opacity: 1; transform: none; }
+}
+
+@keyframes riseInCentered {
+    from { opacity: 0; transform: translate(-50%, 40px); }
+    to   { opacity: 1; transform: translate(-50%, 0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes swingIn {
+    0%   { opacity: 0; transform: rotate(-25deg) translateY(-30px); }
+    60%  { opacity: 1; transform: rotate(6deg); }
+    80%  { transform: rotate(-3deg); }
+    100% { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-delay: 0s !important;
+        animation-iteration-count: 1 !important;
+    }
 }
