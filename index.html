@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="hu">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,26 +8,28 @@
     <link rel="stylesheet" href="css/style.css">
     <title>GoRka Kebab</title>
 </head>
+
 <body>
     <div class="page-bg"></div>
-
-    <div id="menu-screen" class="screen">
-        <header>
+    <header>
+        <div id="menu-screen" class="screen">
             <div class="container">
                 <div class="row">
                     <div class="col-12 text-center">
-                        <h1 class="text-center cim text-white fw-bold p-4 menu-title"><span class="nev">GoRka </span>Kebab</h1>
-                        <img src="img/gorkakebab (2).png" alt="GoRka Kebab Logo" class="img-fluid menu-logo" style="max-width: 250px;">
+                        <h1 class="text-center cim text-white fw-bold p-4 menu-title"><span class="nev">GoRka
+                            </span>Kebab</h1>
+                        <img src="img/gorkakebab (2).png" alt="GoRka Kebab Logo" class="img-fluid menu-logo"
+                            style="max-width: 250px;">
                     </div>
                 </div>
             </div>
-        </header>
-        <main>
             <section class="text-center mt-5">
-                <button id="start-btn" type="button" class="btn text-white p-3 w-25 fs-3 fw-bold jatek menu-item" style="--delay: 0.9s">Játék</button><br>
+                <button id="start-btn" type="button" class="btn text-white p-3 w-25 fs-3 fw-bold jatek menu-item"
+                    style="--delay: 0.9s">Játék</button><br>
 
                 <div class="dropdown d-inline-block w-25 mt-5 menu-item" style="--delay: 1.05s">
-                    <button id="difficulty-btn" class="btn nehezseg text-white p-3 w-100 fs-3 fw-bold dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button id="difficulty-btn" class="btn nehezseg text-white p-3 w-100 fs-3 fw-bold dropdown-toggle"
+                        type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Nehézség
                     </button>
                     <ul class="dropdown-menu dropd w-100 text-center">
@@ -35,60 +38,67 @@
                         <li><a class="dropdown-item text-white fw-bold" href="#">Nehéz</a></li>
                     </ul>
                 </div>
-            </section>
-        </main>
-    </div>
-
-    <div id="game-screen" class="screen d-none">
-        <div class="game-topbar">
-            <button id="back-btn" type="button" class="btn nehezseg text-white fw-bold">← Menü</button>
-            <span class="diff-badge text-white fw-bold">Nehézség: <span id="game-difficulty"></span></span>
         </div>
-
-        <div class="kitchen">
-            <section class="collectArea"></section>
-            <div class="grill-area">
-                <img class="grill-empty d-none" src="img/kebab-grill.png" alt="Kebab-grill">
-                <img class="grill-full" src="img/kebab-grill-with-kebab.png" alt="Kebab-grill hússal">
-                <button type="button" class="collectBtn btn btn-success disabled" onclick="collect()">Begyűjtés</button>
-            </div>
-    
-
-            <div class="order-rail"></div>
-            <div class="orders">
+    </header>
+    <main>
+        <div id="game-screen" class="screen d-none">
+            <div class="game-topbar">
+                <button id="back-btn" type="button" class="btn nehezseg text-white fw-bold">← Menü</button>
+                <span class="diff-badge text-white fw-bold">Nehézség: <span id="game-difficulty"></span></span>
             </div>
 
-            <div class="counter"></div>
+            <div class="kitchen">
+                <div class="collectArea"></div>
+                <div class="grill-area">
+                    <img class="grill-empty d-none" src="img/kebab-grill.png" alt="Kebab-grill">
+                    <img class="grill-full" src="img/kebab-grill-with-kebab.png" alt="Kebab-grill hússal">
+                    <button type="button" class="collectBtn btn btn-success disabled"
+                        onclick="collect()">Begyűjtés</button>
+                </div>
+                <div class="Currency">
+                    <p>Egyenleg: </p>
 
-            <div class="tray-area">
-                <img class="tray-empty" src="img/ingredients-nokebab.png" alt="Hozzávalók">
-                <img class="tray-full d-none" src="img/ingredients-withkebab.png" alt="Hozzávalók hússal">
-            </div>
+                </div>
+                <div class="order-rail"></div>
+                <div class="orders">
 
-            <div class="pita-area">
+                </div>
+
+                <div class="counter"></div>
+
+                <div class="tray-area">
+                    <img class="tray-empty" src="img/ingredients-nokebab.png" alt="Hozzávalók">
+                    <img class="tray-full d-none" src="img/ingredients-withkebab.png" alt="Hozzávalók hússal">
+                </div>
+
+                <div class="pita-area">
                     <img src="img/pita-stack.png" alt="Pitatorony">
-            </div>
-
-            <div class="serve-area">
-                <div class="contents-label d-none">Kebab tartalma:</div>
-                <div class="contents-panel d-none">
-                    <ul class="contents-list"></ul>
-                    
                 </div>
 
+                <div class="serve-area">
+                    <div class="contents-label d-none">Kebab tartalma:</div>
+                    <div class="contents-panel d-none">
+                        <ul class="contents-list"></ul>
 
-                <div class="plate-area">
-                    <img class="plate-empty" src="img/empty-plate.png" alt="Üres tányér">
-                    <img class="pita-plate d-none" src="img/pita-plate.png" alt="Üres pita tányér">
-                    <img class="plate-full d-none" src="img/kebab-plate.png" alt="Kebab a tányéron">
+                    </div>
+                    <div class="plate-area">
+                        <img class="plate-empty" src="img/empty-plate.png" alt="Üres tányér">
+                        <img class="pita-plate d-none" src="img/pita-plate.png" alt="Üres pita tányér">
+                        <img class="plate-full d-none" src="img/kebab-plate.png" alt="Kebab a tányéron">
+                    </div>
                 </div>
-            </div>
 
-            <div class="trash-area" title="Kuka">
-                <span class="trash-placeholder">❌</span>
+                <div class="trash-area" title="Kuka">
+                    <span class="trash-placeholder">❌</span>
+                </div>
             </div>
         </div>
-    </div>
+        </section>
+    </main>
+
+    <footer>
+
+    </footer>
 
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/Kebab.js"></script>
@@ -96,4 +106,5 @@
     <script src="js/Difficulty.js"></script>
     <script src="js/script.js"></script>
 </body>
+
 </html>
