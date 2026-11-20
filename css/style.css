@@ -159,7 +159,7 @@ header {
     z-index: 20;
 }
 
-.game-topbar .btn {
+.game-topbar .btn{
     font-size: 16px;
 }
 
@@ -198,7 +198,7 @@ header {
     object-fit: contain;
 }
 
-.order-rail {
+.order-rail{
     position: absolute;
     top: 5vh;
     left: 30vw;
@@ -240,7 +240,7 @@ header {
     white-space: nowrap;
 }
 
-.order-lines {
+.order-lines{
     display: flex;
     flex-direction: column;
     gap: 6px;
@@ -282,7 +282,7 @@ header {
     z-index: 3;
 }
 
-.contents-label {
+.contents-label{
     color: #fff;
     font-size: clamp(12px, 1vw, 16px);
     font-weight: 600;
@@ -303,7 +303,7 @@ header {
     z-index: 4;
 }
 
-.contents-panel span {
+.contents-panel span{
     height: 4px;
     border-radius: 2px;
     background: #ececec;
@@ -373,6 +373,16 @@ header {
     font-size: clamp(24px, 3vw, 48px);
     opacity: 0.85;
 }
+
+.collectArea {
+    position: relative;
+    width: 315px;
+    height: 460px;
+    top: 100px;
+    left: 180px;
+    z-index: 4;
+}
+
 
 @media (max-width: 1199px) {
     .kitchen { --counter-h: 30vh; }

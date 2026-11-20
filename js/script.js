@@ -1,6 +1,7 @@
 var menu = new Screen("#menu-screen");
 var game = new Screen("#game-screen");
 var difficulty = new Difficulty("#difficulty-btn", "Közepes");
+var gameArea = document.querySelector("collectArea");
 
 var startBtn = document.querySelector("#start-btn");
 var backBtn = document.querySelector("#back-btn");
