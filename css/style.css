@@ -398,17 +398,6 @@ header {
     z-index: 5;
 }
 
-.pita-plate{
-    background-image: url(..//img/pita-plate.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-    position: absolute;
-    right: 134px;
-    top: 525px;
-    z-index: 5;
-}
-
-
 @media (max-width: 1199px) {
     .kitchen { --counter-h: 30vh; }
 
