@@ -354,6 +354,7 @@ header {
 
 .trash-area {
     position: absolute;
+    cursor: pointer;
     right: 1.5vw;
     bottom: 2vh;
     width: 10vw;
