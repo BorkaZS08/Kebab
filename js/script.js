@@ -52,3 +52,10 @@ document.querySelector(".collectArea").addEventListener("click", () => {
     }
 }
 );
+
+document.querySelector(".pita-area").addEventListener("click", () => {
+    document.querySelector(".plate-empty").classList.add("d-none");
+    document.querySelector(".pita-plate").classList.remove("d-none");
+})
+
+
