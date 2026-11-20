@@ -30,13 +30,14 @@ class Kebab {
     }
 
     setContainer(container) {
-        this.#container = document.querySelector("collectArea");
+        this.#container = document.querySelector(container);
     }
 
     createKebab() {
         this.#element = document.createElement("div");
         this.#element.style.left = this.#x + "px";
         this.#element.style.top = this.#y + "px";
+        this.#element.classList.add("kebab")
         this.#container.appendChild(this.#element);
     } 
 
@@ -56,4 +57,6 @@ class Kebab {
         clearInterval(this.#fallInterval);
         this.#element.remove();
     }
+
+    
 }

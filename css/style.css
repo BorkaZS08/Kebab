@@ -376,11 +376,27 @@ header {
 
 .collectArea {
     position: relative;
-    width: 315px;
-    height: 460px;
-    top: 100px;
-    left: 180px;
+    width: 300px;
+    height: 400px;
+    top: 120px;
+    left: 165px;
     z-index: 4;
+}
+
+.kebab{
+    width: 50px;
+    height: 50px;
+    background-image: url(../img/KebabPiece.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+}
+
+.collectBtn {
+    position: absolute;
+    right: 134px;
+    top: 525px;
+    z-index: 5;
 }
 
 
@@ -424,60 +440,5 @@ header {
     .trash-area {
         width: 11vw;
         height: 9vw;
-    }
-}
-
-#game-screen.is-entering .counter     { animation: slideUp 0.5s ease-out both; }
-#game-screen.is-entering .grill-area  { animation: slideRight 0.6s 0.15s cubic-bezier(0.2, 0.9, 0.3, 1.1) both; }
-#game-screen.is-entering .tray-area   { animation: riseIn 0.5s 0.3s ease-out both; }
-#game-screen.is-entering .serve-area  { animation: riseInCentered 0.5s 0.4s ease-out both; }
-#game-screen.is-entering .trash-area  { animation: riseIn 0.5s 0.5s ease-out both; }
-#game-screen.is-entering .order-rail  { animation: fadeIn 0.4s 0.3s both; }
-#game-screen.is-entering .order-ticket { animation: swingIn 0.7s ease-out both; }
-#game-screen.is-entering .order-ticket:nth-child(1) { animation-delay: 0.75s; }
-#game-screen.is-entering .order-ticket:nth-child(2) { animation-delay: 0.6s; }
-#game-screen.is-entering .order-ticket:nth-child(3) { animation-delay: 0.45s; }
-#game-screen.is-entering .game-topbar { animation: fadeIn 0.4s 0.6s both; }
-#game-screen.is-entering .pita-area { animation: stackDrop 0.7s 0.35s cubic-bezier(0.3, 1.4, 0.5, 1) both; }
-
-@keyframes slideUp {
-    from { transform: translateY(100%); }
-    to   { transform: none; }
-}
-
-@keyframes slideRight {
-    from { opacity: 0; transform: translateX(-60%); }
-    to   { opacity: 1; transform: none; }
-}
-
-@keyframes riseInCentered {
-    from { opacity: 0; transform: translate(-50%, 40px); }
-    to   { opacity: 1; transform: translate(-50%, 0); }
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-@keyframes swingIn {
-    0%   { opacity: 0; transform: rotate(-25deg) translateY(-30px); }
-    60%  { opacity: 1; transform: rotate(6deg); }
-    80%  { transform: rotate(-3deg); }
-    100% { opacity: 1; transform: none; }
-}
-
-@keyframes stackDrop {
-    0%   { opacity: 0; transform: translate(-50%, -120px) scaleY(1.1); }
-    60%  { opacity: 1; transform: translate(-50%, 0) scaleY(0.85); }
-    80%  { transform: translate(-50%, -6px) scaleY(1.04); }
-    100% { opacity: 1; transform: translate(-50%, 0) scaleY(1); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-delay: 0s !important;
-        animation-iteration-count: 1 !important;
     }
 }
