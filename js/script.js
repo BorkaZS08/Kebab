@@ -53,17 +53,38 @@ document.querySelector(".collectArea").addEventListener("click", () => {
 }
 );
 
+var contentsList = document.querySelector(".contents-list");
+var hidden = (sel) => document.querySelector(sel).classList.contains("d-none");
+var showContents = (show) => document.querySelectorAll(".contents-label, .contents-panel").forEach((el) => el.classList.toggle("d-none", !show));
+
+["Hagyma", "Saláta", "Paradicsom", "Lilakáposzta", "Uborka", "Hús"].forEach((name, i) =>
+    document.querySelector(".tray-area").insertAdjacentHTML("beforeend", `<div class="ingredient-hitbox" data-ingredient="${name}" style="--i:${i}"></div>`));
+
+document.querySelector(".tray-area").addEventListener("click", (e) => {
+    var hitbox = e.target.closest(".ingredient-hitbox");
+    if (!hitbox) return;
+    var name = hitbox.dataset.ingredient;
+    var ok = hidden(".plate-empty") && !(name === "Hús" && hidden(".tray-full")) && ![...contentsList.children].some((li) => li.textContent === name);
+    if (ok) {
+        contentsList.insertAdjacentHTML("beforeend", `<li>${name}</li>`);
+        document.querySelector(".pita-plate").classList.add("d-none");
+        document.querySelector(".plate-full").classList.remove("d-none");
+    }
+    hitbox.animate([{ background: ok ? "rgba(255, 220, 120, 0.55)" : "rgba(255, 40, 40, 0.45)" }, {}], 300);
+});
+
 document.querySelector(".pita-area").addEventListener("click", () => {
+    if (hidden(".plate-empty")) return;
     document.querySelector(".plate-empty").classList.add("d-none")
     document.querySelector(".pita-plate").classList.remove("d-none");
+    showContents(true);
 })
 
 document.querySelector(".trash-area").addEventListener("click", () => {
 
     document.querySelector(".pita-plate").classList.add("d-none");
+    document.querySelector(".plate-full").classList.add("d-none");
     document.querySelector(".plate-empty").classList.remove("d-none");
+    contentsList.innerHTML = "";
+    showContents(false);
 })
-
-
-
-

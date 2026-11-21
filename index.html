@@ -45,19 +45,16 @@
             <div class="game-topbar">
                 <button id="back-btn" type="button" class="btn nehezseg text-white fw-bold">← Menü</button>
                 <span class="diff-badge text-white fw-bold">Nehézség: <span id="game-difficulty"></span></span>
+                <span class="Currency diff-badge text-white fw-bold">Egyenleg: <span class="AvailableCurrency">$200</span></span>
             </div>
 
             <div class="kitchen">
-                <div class="collectArea"></div>
                 <div class="grill-area">
                     <img class="grill-empty d-none" src="img/kebab-grill.png" alt="Kebab-grill">
                     <img class="grill-full" src="img/kebab-grill-with-kebab.png" alt="Kebab-grill hússal">
+                    <div class="collectArea"></div>
                     <button type="button" class="collectBtn btn btn-success disabled"
                         onclick="collect()">Begyűjtés</button>
-                </div>
-                <div class="Currency text-white fs-1">
-                    <p>Egyenleg: <span class="AvailableCurrency">$200</span></p>
-
                 </div>
                 <div class="order-rail"></div>
                 <div class="orders">

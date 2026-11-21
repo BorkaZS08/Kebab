@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+body, img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; }
+
 body {
     position: relative;
     min-height: 100vh;
@@ -184,17 +186,15 @@ header {
     position: absolute;
     left: 2vw;
     bottom: calc(var(--counter-h) - 4vh);
-    height: 64vh;
-    max-width: 42vw;
+    height: min(64vh, 43vw);
+    aspect-ratio: 1239 / 1270;
     z-index: 3;
 }
 
 .grill-area img {
     display: block;
+    width: 100%;
     height: 100%;
-    width: auto;
-    max-width: 100%;
-    object-fit: contain;
 }
 
 .order-rail{
@@ -289,8 +289,8 @@ header {
 }
 
 .contents-panel {
-    width: 10vw;
-    height: 16vh;
+    width: 12vw;
+    height: 22vh;
     background: linear-gradient(#c9c9c9, #a3a3a3);
     border-radius: 4px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
@@ -301,6 +301,8 @@ header {
     position: relative;
     z-index: 4;
 }
+
+.contents-list { list-style: none; margin: 0; padding: 0; font-size: clamp(13px, 1.2vw, 18px); line-height: 1.15; color: #222; overflow-y: auto; }
 
 .contents-panel span{
     height: 4px;
@@ -342,7 +344,7 @@ header {
 .plate-area {
     --plate-w: min(26vw, 36vh * 1.33);
     width: var(--plate-w);
-    --plate-pull: -0.22;
+    --plate-pull: -0.08;
     margin-top: calc(var(--plate-w) * var(--plate-pull));
 }
 
@@ -375,17 +377,13 @@ header {
 }
 
 .collectArea {
-    position: relative;
-    width: 300px;
-    height: 400px;
-    top: 120px;
-    left: 165px;
+    position: absolute; left: 33%; width: 34%; top: 7%; height: 66%;
+    overflow: hidden; cursor: pointer;
     z-index: 4;
 }
 
 .kebab{
-    width: 50px;
-    height: 50px;
+    width: clamp(28px, 5.5vh, 50px); height: clamp(28px, 5.5vh, 50px);
     background-image: url(../img/KebabPiece.png);
     background-size: contain;
     background-repeat: no-repeat;
@@ -394,20 +392,14 @@ header {
 
 .collectBtn {
     position: absolute;
-    right: 134px;
-    top: 525px;
+    right: 21%; bottom: 6%; font-size: clamp(13px, 1.8vh, 18px); padding: 0.3em 0.8em;
     z-index: 5;
 }
 
-.Currency{
-    position: relative;
-    width: 300px;
-    height: 400px;
-    top: 485px;
-    left: 25px;
-    text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px  2px 0 #000, 2px  2px 0 #000;
-    z-index: 4;
-}
+.Currency .AvailableCurrency { text-shadow: none; }
+
+.ingredient-hitbox { position: absolute; top: 19%; height: 57%; width: 14.5%; left: calc(4.5% + var(--i) * 15.3%); cursor: pointer; border-radius: 6px; -webkit-tap-highlight-color: transparent; }
+.ingredient-hitbox:hover, .ingredient-hitbox:active { background: rgba(255, 255, 255, 0.15); box-shadow: 0 0 12px rgba(255, 170, 60, 0.85); }
 
 .AvailableCurrency{
     color: rgb(61, 245, 61);
@@ -418,10 +410,7 @@ header {
 @media (max-width: 1199px) {
     .kitchen { --counter-h: 30vh; }
 
-    .grill-area {
-        height: 58vh;
-        max-width: 40vw;
-    }
+    .grill-area { height: min(58vh, 41vw); }
 
     .order-rail { left: 38vw; }
 
@@ -443,17 +432,41 @@ header {
     .serve-area { left: 72vw; }
 
     .contents-panel {
-        width: 13vw;
-        height: 15vh;
+        width: 15vw;
+        height: 21vh;
     }
 
     .plate-area {
         --plate-w: min(26vw, 30vh * 1.33);
-        --plate-pull: -0.14;
+        --plate-pull: -0.04;
     }
 
     .trash-area {
         width: 11vw;
         height: 9vw;
     }
+}
+
+@media (max-width: 1024px) and (orientation: portrait) {
+    .kitchen { --counter-h: 44vh; }
+    .grill-area { left: 3vw; height: min(44vh, 52vw); }
+    .collectBtn { font-size: 13px; }
+    .order-rail { left: 58vw; }
+    .orders { flex-direction: column; gap: 1.5vh; }
+    .order-ticket { width: 30vw; height: 18vh; }
+    .tray-area { left: 50%; bottom: auto; top: calc(100vh - var(--counter-h) + 1vh); width: 94vw; transform: translateX(-50%); }
+    .pita-area { left: 13vw; bottom: 3vh; width: 20vw; }
+    .serve-area { left: auto; right: 15vw; bottom: 2vh; transform: none; display: grid; grid-template-areas: "label plate" "panel plate"; align-items: end; column-gap: 2vw; }
+    .contents-label { grid-area: label; }
+    .contents-panel { grid-area: panel; width: 24vw; height: 16vh; }
+    .plate-area { grid-area: plate; --plate-w: 32vw; margin-top: 0; }
+    .trash-area { right: 2vw; bottom: 3vh; width: 11vw; height: 11vw; }
+}
+
+@media (orientation: landscape) and (max-aspect-ratio: 3/2) {
+    .tray-area { width: min(40vw, 22vh * 3); }
+}
+
+@media (max-width: 1024px) {
+    .menu-item, #start-btn { width: min(60vw, 380px) !important; }
 }
