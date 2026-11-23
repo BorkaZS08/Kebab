@@ -108,12 +108,12 @@ function rendelesekInditasa(szint) {
 }
 
 function aktualisSzint() {
-    let szoveg = document.getElementById('difficulty-btn').textContent.replace('Nehézség:', '').trim();
-    return szintNevek[szoveg] || 'kozepes';
+  let szoveg = document.getElementById('difficulty-btn').textContent.replace('Nehézség:', '').trim();
+  return szintNevek[szoveg] || 'kozepes';
 }
 
 document.getElementById('start-btn').addEventListener('click', function () {
-    rendelesekInditasa(aktualisSzint());
+  rendelesekInditasa(aktualisSzint());
 });
 
 document.getElementById('back-btn').addEventListener('click', rendelesekLeallitasa);
