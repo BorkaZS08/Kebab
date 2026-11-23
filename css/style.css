@@ -703,6 +703,70 @@ header {
     }
 }
 
+.ticket-list {
+    position: absolute;
+    left: 2vw;
+    right: 3vw;
+    top: 14vh;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 1.2vw;
+    line-height: 0.92;
+    color: #3a2a2a;
+}
+
+.ticket-list .price {
+    flex: 0 0 22%;
+    text-align: center;
+    color: #3a2a2a;
+    margin-right: -12%;
+}
+
+.ticket-list li {
+    display: flex;
+}
+
+.ticket-list .qty {
+    flex: 0 0 17%;
+    text-align: center;
+}
+
+.ticket-list .item {
+    flex: 1;
+    padding-left: 5%;
+    color: #3a2a2a;
+    white-space: nowrap;
+}
+
+.ticket-list .nev {
+    padding-left: 4%;
+}
+
+.rejtett {
+    visibility: hidden;
+}
+
+.ticket-timer {
+    position: absolute;
+    top: 2%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #f4f1e8;
+    border: 1px solid #b3262b;
+    border-radius: 4px;
+    padding: 0 4%;
+    font-size: 2cqw;
+    line-height: 1.2;
+    color: #3a2a2a;
+    pointer-events: none;
+}
+
+.ticket-timer.surgos {
+    color: #fff;
+    background: #b3262b;
+}
+
 @media (orientation: landscape) and (max-aspect-ratio: 3/2) {
     .tray-area {
         width: min(40vw, 22vh * 3);
