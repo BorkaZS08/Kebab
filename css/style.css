@@ -208,14 +208,14 @@ header {
 }
 
 .game-topbar .btn {
-    font-size: 16px;
+    font-size: 20px;
 }
 
 .diff-badge {
-    font-size: 16px;
+    font-size: 20px;
     background: rgba(40, 40, 40, 0.75);
     border-radius: 6px;
-    padding: 6px 12px;
+    padding: 7px 14px;
 }
 
 .counter {
@@ -399,48 +399,30 @@ header {
     transition: transform 0.2s ease, filter 0.2s ease;
 }
 
-.rendeles1 {
+.order-area {
+    --cetli: 15vw;
     position: absolute;
     top: 2vh;
     left: 40vw;
-    width: 15vw;
+    display: flex;
     z-index: 3;
 }
 
-.rendeles1 img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-.rendeles2 {
-    position: absolute;
-    top: 2vh;
-    left: 55vw;
-    width: 15vw;
-    z-index: 3;
-}
-
-.rendeles2 img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
+.rendeles1,
+.rendeles2,
 .rendeles3 {
-    position: absolute;
-    top: 2vh;
-    left: 70vw;
-    width: 15vw;
-    z-index: 3;
+    position: relative;
+    flex-shrink: 0;
+    width: var(--cetli);
+    container-type: inline-size;
+    transition: margin-right 0.4s ease, opacity 0.3s ease;
 }
 
-.rendeles3 img {
+.order-area img {
     width: 100%;
     height: auto;
     display: block;
 }
-
 .pita-area img:hover {
     transform: translateY(-6px) scale(1.04);
     filter: drop-shadow(0 0 12px rgba(255, 170, 60, 0.85));
@@ -514,6 +496,15 @@ header {
     z-index: 5;
 }
 
+.buyBtn {
+    position: absolute;
+    left: 33%;
+    bottom: 6%;
+    font-size: clamp(13px, 1.8vh, 18px);
+    padding: 0.3em 0.8em;
+    z-index: 5;
+}
+
 .Currency .AvailableCurrency {
     text-shadow: none;
 }
@@ -547,10 +538,12 @@ header {
     }
 
     .grill-area {
+        left: -4vw;
         height: min(58vh, 41vw);
     }
 
     .order-rail {
+        top: calc(52px + 3vh);
         left: 38vw;
     }
 
@@ -588,24 +581,17 @@ header {
         height: 9vw;
     }
 
+    .order-area {
+        --cetli: min(25vw, 44vh - 82px);
+        top: 52px;
+        left: 27vw;
+    }
+
     .rendeles1,
     .rendeles2,
     .rendeles3 {
-        width: min(23vw, 29vh);
+        margin-right: -1.5vw;
     }
-
-    .rendeles1 {
-        left: 34vw;
-    }
-
-    .rendeles2 {
-        left: 56vw;
-    }
-
-    .rendeles3 {
-        left: 78vw;
-    }
-
 }
 
 @media (max-width: 1024px) and (orientation: portrait) {
@@ -614,16 +600,18 @@ header {
     }
 
     .grill-area {
-        left: 3vw;
+        left: -9vw;
         height: min(44vh, 52vw);
     }
 
-    .collectBtn {
+    .collectBtn,
+    .buyBtn {
         font-size: 13px;
     }
 
     .order-rail {
-        left: 58vw;
+        top: calc(52px + 2vh);
+        left: 31vw;
     }
 
     .orders {
@@ -684,69 +672,137 @@ header {
         height: 11vw;
     }
 
-    .rendeles1,
-    .rendeles2,
-    .rendeles3 {
-        width: 19vw;
-    }
-
-    .rendeles1 {
-        left: 36vw;
-    }
-
-    .rendeles2 {
-        left: 57vw;
-    }
-
-    .rendeles3 {
-        left: 78vw;
+    .order-area {
+        --cetli: 24vw;
+        left: 31vw;
     }
 }
 
 .ticket-list {
     position: absolute;
-    left: 2vw;
-    right: 3vw;
-    top: 14vh;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    font-size: 1.2vw;
-    line-height: 0.92;
+    left: 9.8%;
+    right: 9.9%;
+    top: 30.1%;
+    font-size: 8cqw;
+    line-height: 1;
     color: #3a2a2a;
-}
-
-.ticket-list .price {
-    flex: 0 0 22%;
-    text-align: center;
-    color: #3a2a2a;
-    margin-right: -12%;
 }
 
 .ticket-list li {
     display: flex;
+    align-items: center;
+    height: 6.95cqw;
 }
 
 .ticket-list .qty {
-    flex: 0 0 17%;
+    flex: 0 0 18.5%;
     text-align: center;
 }
 
 .ticket-list .item {
     flex: 1;
-    padding-left: 5%;
-    color: #3a2a2a;
+    padding-left: 4%;
     white-space: nowrap;
 }
 
-.ticket-list .nev {
-    padding-left: 4%;
+.ticket-list .price {
+    flex: 0 0 22%;
+    text-align: center;
+}
+
+.ticket-total {
+    position: absolute;
+    left: 52.4%;
+    top: 77%;
+    width: 37.4%;
+    height: 7.2%;
+    padding: 0;
+    border: none;
+    background: none;
+    font-size: 9cqw;
+    line-height: 1;
+    color: #b3262b;
+}
+
+.ticket-total::after {
+    content: "";
+    position: absolute;
+    inset: -8px;
+}
+
+.ticket-total:hover {
+    background: rgba(179, 38, 43, 0.15);
 }
 
 .rejtett {
     visibility: hidden;
+    opacity: 0;
+    margin-right: calc(var(--cetli) * -1);
 }
 
+.uzenet {
+    width: max-content;
+    max-width: 90vw;
+    padding: 10px 20px;
+    font-size: 26px;
+    color: #b3262b;
+    background: #f4f1e8;
+    border: 2px solid #b3262b;
+    pointer-events: none;
+    z-index: 30;
+}
+
+.uzenet.fade {
+    transition: opacity 0.4s linear;
+}
+
+.eredmeny {
+    font-size: 24px;
+    background: rgb(60, 60, 60);
+}
+
+.Currency {
+    position: relative;
+}
+
+.penz {
+    position: absolute;
+    right: 14px;
+    top: 7px;
+    pointer-events: none;
+}
+
+.kiadas {
+    color: rgb(255, 60, 60);
+    animation: penzKi 1.2s ease-out forwards;
+}
+
+.bevetel {
+    color: rgb(61, 245, 61);
+    animation: penzBe 1.2s ease-in forwards;
+}
+
+@keyframes penzKi {
+    50% {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+}
+
+@keyframes penzBe {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
 .ticket-timer {
     position: absolute;
     top: 2%;
@@ -756,7 +812,7 @@ header {
     border: 1px solid #b3262b;
     border-radius: 4px;
     padding: 0 4%;
-    font-size: 2cqw;
+    font-size: 13cqw;
     line-height: 1.2;
     color: #3a2a2a;
     pointer-events: none;
@@ -765,6 +821,12 @@ header {
 .ticket-timer.surgos {
     color: #fff;
     background: #b3262b;
+}
+
+@media (min-width: 1200px) and (max-aspect-ratio: 16/10) {
+    .order-area {
+        --cetli: 18.5vw;
+    }
 }
 
 @media (orientation: landscape) and (max-aspect-ratio: 3/2) {
@@ -782,30 +844,6 @@ header {
 }
 
 @media (max-width: 1199px) {
-
-    .rendeles1,
-    .rendeles2,
-    .rendeles3 {
-        container-type: inline-size;
-    }
-
-    .ticket-list {
-        left: 2vw;
-        right: 3vw;
-        top: 12.2vh;
-        font-size: 1.6vw;
-        color: #3a2a2a;
-    }
-
-    .ticket-list li {
-        height: 7.3cqw;
-        align-items: center;
-    }
-
-    .ticket-list .price {
-        margin-right: -4%;
-    }
-
     .ticket-timer {
         font-size: 10cqw;
     }

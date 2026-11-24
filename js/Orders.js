@@ -47,9 +47,26 @@ function ujRendeles(cetli) {
         }
     }
 
+    cetli.lista = lista;
+    cetli.osszeg = lista.reduce((ossz, nev) => ossz + arak[nev], 0);
     cetli.querySelector('.ticket-list').innerHTML = szoveg;
+    cetli.querySelector('.ticket-total').textContent = '$' + cetli.osszeg;
 }
 
+    // Ai --
+function leadas(cetli) {
+    let tartalom = [...contentsList.children].map((li) => li.textContent);
+
+    if (tartalom.length != cetli.lista.length || !cetli.lista.every((nev) => tartalom.includes(nev))) {
+        uzenet('Ez a kebab nem felel meg az elvárásoknak!');
+        return;
+    }
+
+    penzMozgas(cetli.osszeg);
+    tanyerUrites();
+    lejart(cetli);
+}
+    //--
 function varakozas(cetli) {
     let mp = veletlen(nehezseg.min, nehezseg.max);
     cetli.timeout = setTimeout(function () {
@@ -62,6 +79,7 @@ function megjelenik(cetli) {
     let kijelzo = cetli.querySelector('.ticket-timer');
 
     ujRendeles(cetli);
+    cetli.parentElement.appendChild(cetli);
     kijelzo.textContent = idoSzoveg(ido);
     kijelzo.classList.remove('surgos');
     cetli.classList.remove('rejtett');

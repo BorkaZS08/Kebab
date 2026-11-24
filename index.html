@@ -54,8 +54,9 @@
                     <img class="grill-empty d-none" src="img/kebab-grill.png" alt="Kebab-grill">
                     <img class="grill-full" src="img/kebab-grill-with-kebab.png" alt="Kebab-grill hússal">
                     <div class="collectArea"></div>
-                    <button type="button" class="collectBtn btn btn-success disabled"
-                        onclick="collect()">Begyűjtés</button>
+                    <button type="button" class="collectBtn btn btn-success" onclick="collect()"
+                        disabled>Begyűjtés</button>
+                    <button type="button" class="buyBtn btn btn-warning" onclick="vetel()" disabled>Kebab $50</button>
                 </div>
                 <div class="order-rail"></div>
                 <div class="order-area">
@@ -63,16 +64,19 @@
                         <img src="img/OrderReceipt.png" alt="Rendelés">
                         <div class="ticket-list"></div>
                         <div class="ticket-timer"></div>
+                        <button type="button" class="ticket-total" onclick="leadas(this.parentElement)"></button>
                     </div>
                     <div class="rendeles2">
                         <img src="img/OrderReceipt.png" alt="Rendelés">
                         <div class="ticket-list"></div>
                         <div class="ticket-timer"></div>
+                        <button type="button" class="ticket-total" onclick="leadas(this.parentElement)"></button>
                     </div>
                     <div class="rendeles3">
                         <img src="img/OrderReceipt.png" alt="Rendelés">
                         <div class="ticket-list"></div>
                         <div class="ticket-timer"></div>
+                        <button type="button" class="ticket-total" onclick="leadas(this.parentElement)"></button>
                     </div>
                 </div>
 
@@ -107,9 +111,22 @@
                 </div>
 
             </div>
+            <div class="uzenet toast fade text-center position-absolute top-50 start-50 translate-middle"
+                data-bs-delay="2000"></div>
         </div>
         </section>
     </main>
+
+    <div id="eredmeny-modal" class="modal fade" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content eredmeny text-white text-center p-4">
+                <h2 class="fw-bold nev">Játék vége</h2>
+                <p class="mb-1">Játékidő: <span class="jatekido"></span></p>
+                <p>Egyenleg: <span class="elert-egyenleg"></span></p>
+                <button type="button" class="btn jatek text-white fw-bold fs-4" data-bs-dismiss="modal">Rendben</button>
+            </div>
+        </div>
+    </div>
 
     <footer>
 
