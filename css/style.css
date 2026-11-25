@@ -246,7 +246,7 @@ header {
 
 .order-rail {
     position: absolute;
-    top: 5vh;
+    top: calc(52px + 3vh);
     left: 30vw;
     right: 0;
     height: 6px;
@@ -402,7 +402,7 @@ header {
 .order-area {
     --cetli: 15vw;
     position: absolute;
-    top: 2vh;
+    top: 52px;
     left: 40vw;
     display: flex;
     z-index: 3;
@@ -543,7 +543,6 @@ header {
     }
 
     .order-rail {
-        top: calc(52px + 3vh);
         left: 38vw;
     }
 
@@ -583,7 +582,6 @@ header {
 
     .order-area {
         --cetli: min(25vw, 44vh - 82px);
-        top: 52px;
         left: 27vw;
     }
 
@@ -754,6 +752,15 @@ header {
 
 .uzenet.fade {
     transition: opacity 0.4s linear;
+}
+
+.hus-szam {
+    position: absolute;
+    left: 88%;
+    top: 60%;
+    padding: 0 8px;
+    transform: translateX(-50%);
+    pointer-events: none;
 }
 
 .eredmeny {

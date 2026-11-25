@@ -13,6 +13,8 @@ var klikkSzam = 0;
 var husAdag = 0;
 var egyenleg = 200;
 var kezdes = 0;
+var hibak = 0;
+var modal = document.querySelector("#eredmeny-modal");
 ["Hagyma", "Saláta", "Paradicsom", "Lilakáposzta", "Uborka", "Hús"].forEach((name, i) =>
     document.querySelector(".tray-area").insertAdjacentHTML("beforeend", `<div class="ingredient-hitbox" data-ingredient="${name}" style="--i:${i}"></div>`));
 
@@ -27,10 +29,10 @@ document.querySelector(".tray-area").addEventListener("click", (e) => {
         document.querySelector(".plate-full").classList.remove("d-none");
         if (name === "Hús") {
             husAdag--;
+            husFrissites();
             if (husAdag == 0) {
                 document.querySelector(".tray-full").classList.add("d-none");
                 document.querySelector(".tray-empty").classList.remove("d-none");
-                gyujtesGomb();
             }
         }
     }
@@ -64,26 +66,60 @@ for (let i = 0; i < difficultyItems.length; i++) {
 
 startBtn.addEventListener("click", () => {
     gameDifficulty.innerHTML = difficulty.getName();
-    kezdes = Date.now();
     ujJatek();
     menu.hide();
-    setTimeout(() => game.show(), 400);
+    setTimeout(() => {
+        game.show();
+        ablak("Játékmenet", `Kattints a grillre 5-ször, majd gyűjtsd be a levágott húst.<br>
+            Vegyél egy pitát, és tedd bele a rendelésen szereplő hozzávalókat.<br>
+            A kész kebabot a cetlin lévő összegre kattintva adhatod le, az elrontottat dobd a kukába.<br>
+            Egy kebab 5 adagra elég, utána vegyél újat $50-ért.<br>
+            Ha ${nehezseg.hibak} rendelés ideje lejár, vesztettél!`);
+        modal.addEventListener("hidden.bs.modal", () => {
+            kezdes = Date.now();
+            rendelesekInditasa();
+        }, { once: true });
+    }, 400);
 });
 
-backBtn.addEventListener("click", () => {
-    document.querySelector(".jatekido").textContent = idoSzoveg(Math.floor((Date.now() - kezdes) / 1000));
-    document.querySelector(".elert-egyenleg").textContent = "$" + egyenleg;
+backBtn.addEventListener("click", () => jatekVege("Játék vége"));
+
+function ablak(cim, szoveg) {
+    modal.querySelector("h2").textContent = cim;
+    modal.querySelector("p").innerHTML = szoveg;
+    bootstrap.Modal.getOrCreateInstance(modal).show();
+}
+
+function jatekVege(cim) {
+    var ido = idoSzoveg(Math.floor((Date.now() - kezdes) / 1000));
+    rendelesekLeallitasa();
     game.hide();
     setTimeout(() => {
         menu.show();
-        bootstrap.Modal.getOrCreateInstance("#eredmeny-modal").show();
+        ablak(cim, `Játékidő: ${ido}<br>Egyenleg: $${egyenleg}`);
     }, 400);
-});
+}
+
+function hibazas() {
+    hibak++;
+    hibaFrissites();
+    if (hibak == nehezseg.hibak) jatekVege("Vesztettél!");
+}
+
+function hibaFrissites() {
+    document.querySelector(".hibak").textContent = hibak + "/" + nehezseg.hibak;
+}
+
+function husFrissites() {
+    document.querySelector(".hus-szam").textContent = husAdag + "/5";
+}
 
 function ujJatek() {
     egyenleg = 200;
     husAdag = 0;
     klikkSzam = 0;
+    hibak = 0;
+    nehezseg = nehezsegek[aktualisSzint()];
     document.querySelector(".grill-full").classList.remove("d-none");
     document.querySelector(".grill-empty").classList.add("d-none");
     document.querySelector(".tray-empty").classList.remove("d-none");
@@ -93,18 +129,25 @@ function ujJatek() {
     tanyerUrites();
     gyujtesGomb();
     egyenlegFrissites();
+    hibaFrissites();
+    husFrissites();
 }
 
 function gyujtesGomb() {
-    document.querySelector(".collectBtn").disabled = klikkSzam != 6 || !hidden(".tray-full");
+    document.querySelector(".collectBtn").disabled = klikkSzam != 6;
 }
 
 function collect() {
+    if (husAdag > 0) {
+        uzenet("Még maradt hús a hozzávalóknál!");
+        return;
+    }
     document.querySelector(".tray-empty").classList.add("d-none")
     document.querySelector(".tray-full").classList.remove("d-none")
     document.querySelector(".buyBtn").disabled = false;
     husAdag = 5;
     klikkSzam = 7;
+    husFrissites();
     gyujtesGomb();
 }
 

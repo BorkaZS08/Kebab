@@ -10,9 +10,9 @@ const arak = {
 const hozzavalok = ['Hagyma', 'Saláta', 'Paradicsom', 'Lilakáposzta', 'Uborka'];
 
 const nehezsegek = {
-    konnyu: { min: 8, max: 15, idoMin: 60, idoMax: 90 },
-    kozepes: { min: 4, max: 10, idoMin: 40, idoMax: 70 },
-    nehez: { min: 2, max: 6, idoMin: 25, idoMax: 50 }
+    konnyu: { min: 8, max: 15, idoMin: 60, idoMax: 90, hibak: 5 },
+    kozepes: { min: 4, max: 10, idoMin: 40, idoMax: 70, hibak: 3 },
+    nehez: { min: 2, max: 6, idoMin: 25, idoMax: 50, hibak: 1 }
 };
 
 const szintNevek = { 'Könnyű': 'konnyu', 'Közepes': 'kozepes', 'Nehéz': 'nehez' };
@@ -94,6 +94,7 @@ function megjelenik(cetli) {
 
         if (ido <= 0) {
             lejart(cetli);
+            hibazas();
         }
     }, 1000);
 }
@@ -116,9 +117,8 @@ function rendelesekLeallitasa() {
     });
 }
 
-function rendelesekInditasa(szint) {
+function rendelesekInditasa() {
     rendelesekLeallitasa();
-    nehezseg = nehezsegek[szint];
 
     cetlik().forEach(function (cetli) {
         varakozas(cetli);
@@ -129,11 +129,5 @@ function aktualisSzint() {
   let szoveg = document.getElementById('difficulty-btn').textContent.replace('Nehézség:', '').trim();
   return szintNevek[szoveg] || 'kozepes';
 }
-
-document.getElementById('start-btn').addEventListener('click', function () {
-  rendelesekInditasa(aktualisSzint());
-});
-
-document.getElementById('back-btn').addEventListener('click', rendelesekLeallitasa);
 
 rendelesekLeallitasa();
