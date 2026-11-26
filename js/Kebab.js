@@ -39,24 +39,24 @@ class Kebab {
         this.#element.style.top = this.#y + "px";
         this.#element.classList.add("kebab")
         this.#container.appendChild(this.#element);
-    } 
+    }
 
-   
-    fall(){
+
+    fall() {
         this.#fallInterval = setInterval(() => {
             this.#y += this.#speed;
             this.#element.style.top = this.#y + "px";
 
-            if(this.#y > this.#container.offsetHeight){
+            if (this.#y > this.#container.offsetHeight) {
                 this.remove();
             }
         }, 20);
     }
 
-    remove(){
+    remove() {
         clearInterval(this.#fallInterval);
         this.#element.remove();
     }
 
-    
+
 }

@@ -37,85 +37,87 @@
                         <li><a class="dropdown-item text-white fw-bold" href="#">Nehéz</a></li>
                     </ul>
                 </div>
+            </div>
         </div>
-    </div>
     </header>
     <main>
         <section>
-        <div id="game-screen" class="screen d-none">
-            <div class="game-topbar">
-                <button id="back-btn" type="button" class="btn nehezseg text-white fw-bold">← Menü</button>
-                <span class="diff-badge text-white fw-bold">Nehézség: <span id="game-difficulty"></span></span>
-                <span class="Currency diff-badge text-white fw-bold">Egyenleg: <span
-                        class="AvailableCurrency">$200</span></span>
-                <span class="diff-badge text-white fw-bold">Pont: <span id="pont-kijelzo" class="pont">0</span></span>
-                <span class="diff-badge text-white fw-bold">Hibák: <span class="hibak"></span></span>
+            <div id="game-screen" class="screen d-none">
+                <div class="game-topbar">
+                    <button id="back-btn" type="button" class="btn nehezseg text-white fw-bold">← Menü</button>
+                    <span class="diff-badge text-white fw-bold">Nehézség: <span id="game-difficulty"></span></span>
+                    <span class="Currency diff-badge text-white fw-bold">Egyenleg: <span
+                            class="AvailableCurrency">$200</span></span>
+                    <span class="diff-badge text-white fw-bold">Pont: <span id="pont-kijelzo"
+                            class="pont">0</span></span>
+                    <span class="diff-badge text-white fw-bold">Hibák: <span class="hibak"></span></span>
+                </div>
+
+                <div class="kitchen">
+                    <div class="grill-area">
+                        <img class="grill-empty d-none" src="img/kebab-grill.png" alt="Kebab-grill">
+                        <img class="grill-full" src="img/kebab-grill-with-kebab.png" alt="Kebab-grill hússal">
+                        <div class="collectArea"></div>
+                        <button type="button" class="collectBtn btn btn-success" onclick="collect()"
+                            disabled>Begyűjtés</button>
+                        <button type="button" class="buyBtn btn btn-warning" onclick="vetel()" disabled>Kebab
+                            $50</button>
+                    </div>
+                    <div class="order-rail"></div>
+                    <div class="order-area">
+                        <div class="rendeles1">
+                            <img src="img/OrderReceipt.png" alt="Rendelés">
+                            <div class="ticket-list"></div>
+                            <div class="ticket-timer"></div>
+                            <button type="button" class="ticket-total" onclick="leadas(this.parentElement)"></button>
+                        </div>
+                        <div class="rendeles2">
+                            <img src="img/OrderReceipt.png" alt="Rendelés">
+                            <div class="ticket-list"></div>
+                            <div class="ticket-timer"></div>
+                            <button type="button" class="ticket-total" onclick="leadas(this.parentElement)"></button>
+                        </div>
+                        <div class="rendeles3">
+                            <img src="img/OrderReceipt.png" alt="Rendelés">
+                            <div class="ticket-list"></div>
+                            <div class="ticket-timer"></div>
+                            <button type="button" class="ticket-total" onclick="leadas(this.parentElement)"></button>
+                        </div>
+                    </div>
+
+                    <div class="counter"></div>
+
+                    <div class="tray-area">
+                        <img class="tray-empty" src="img/ingredients-nokebab.png" alt="Hozzávalók">
+                        <img class="tray-full d-none" src="img/ingredients-withkebab.png" alt="Hozzávalók hússal">
+                        <span class="hus-szam diff-badge text-white fw-bold"></span>
+                    </div>
+
+                    <div class="pita-area">
+                        <img src="img/pita-stack.png" alt="Pitatorony">
+                    </div>
+
+                    <div class="serve-area">
+                        <div class="contents-label text-center d-none">Kebab tartalma:</div>
+                        <div class="contents-panel d-none">
+                            <ul class="contents-list"></ul>
+
+                        </div>
+                        <div class="plate-area">
+                            <img class="plate-empty" src="img/empty-plate.png" alt="Üres tányér">
+                            <img class="pita-plate d-none" src="img/pita-plate.png" alt="Üres pita tányér">
+                            <img class="plate-full d-none" src="img/kebab-plate.png" alt="Kebab a tányéron">
+                        </div>
+                    </div>
+
+                    <div class="trash-area" title="Kuka">
+                        <span class="trash-placeholder">❌</span>
+                    </div>
+
+                </div>
+                <div class="uzenet toast fade text-center position-absolute top-50 start-50 translate-middle"
+                    data-bs-delay="2000"></div>
             </div>
-
-            <div class="kitchen">
-                <div class="grill-area">
-                    <img class="grill-empty d-none" src="img/kebab-grill.png" alt="Kebab-grill">
-                    <img class="grill-full" src="img/kebab-grill-with-kebab.png" alt="Kebab-grill hússal">
-                    <div class="collectArea"></div>
-                    <button type="button" class="collectBtn btn btn-success" onclick="collect()"
-                        disabled>Begyűjtés</button>
-                    <button type="button" class="buyBtn btn btn-warning" onclick="vetel()" disabled>Kebab $50</button>
-                </div>
-                <div class="order-rail"></div>
-                <div class="order-area">
-                    <div class="rendeles1">
-                        <img src="img/OrderReceipt.png" alt="Rendelés">
-                        <div class="ticket-list"></div>
-                        <div class="ticket-timer"></div>
-                        <button type="button" class="ticket-total" onclick="leadas(this.parentElement)"></button>
-                    </div>
-                    <div class="rendeles2">
-                        <img src="img/OrderReceipt.png" alt="Rendelés">
-                        <div class="ticket-list"></div>
-                        <div class="ticket-timer"></div>
-                        <button type="button" class="ticket-total" onclick="leadas(this.parentElement)"></button>
-                    </div>
-                    <div class="rendeles3">
-                        <img src="img/OrderReceipt.png" alt="Rendelés">
-                        <div class="ticket-list"></div>
-                        <div class="ticket-timer"></div>
-                        <button type="button" class="ticket-total" onclick="leadas(this.parentElement)"></button>
-                    </div>
-                </div>
-
-                <div class="counter"></div>
-
-                <div class="tray-area">
-                    <img class="tray-empty" src="img/ingredients-nokebab.png" alt="Hozzávalók">
-                    <img class="tray-full d-none" src="img/ingredients-withkebab.png" alt="Hozzávalók hússal">
-                    <span class="hus-szam diff-badge text-white fw-bold"></span>
-                </div>
-
-                <div class="pita-area">
-                    <img src="img/pita-stack.png" alt="Pitatorony">
-                </div>
-
-                <div class="serve-area">
-                    <div class="contents-label text-center d-none">Kebab tartalma:</div>
-                    <div class="contents-panel d-none">
-                        <ul class="contents-list"></ul>
-
-                    </div>
-                    <div class="plate-area">
-                        <img class="plate-empty" src="img/empty-plate.png" alt="Üres tányér">
-                        <img class="pita-plate d-none" src="img/pita-plate.png" alt="Üres pita tányér">
-                        <img class="plate-full d-none" src="img/kebab-plate.png" alt="Kebab a tányéron">
-                    </div>
-                </div>
-
-                <div class="trash-area" title="Kuka">
-                    <span class="trash-placeholder">❌</span>
-                </div>
-
-            </div>
-            <div class="uzenet toast fade text-center position-absolute top-50 start-50 translate-middle"
-                data-bs-delay="2000"></div>
-        </div>
         </section>
     </main>
 

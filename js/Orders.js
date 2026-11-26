@@ -56,7 +56,7 @@ function ujRendeles(cetli) {
     cetli.querySelector('.ticket-total').textContent = '$' + cetli.osszeg;
 }
 
-    // Ai --
+// Ai --
 function leadas(cetli) {
     let tartalom = tanyerTartalma();
 
@@ -71,7 +71,7 @@ function leadas(cetli) {
     tanyerUrites();
     lejart(cetli);
 }
-    //--
+//--
 function varakozas(cetli) {
     let mp = veletlen(nehezseg.min, nehezseg.max);
     cetli.timeout = setTimeout(function () {
@@ -131,8 +131,8 @@ function rendelesekInditasa() {
 }
 
 function aktualisSzint() {
-  let szoveg = document.querySelector('#difficulty-btn').textContent.replace('Nehézség:', '').trim();
-  return szintNevek[szoveg] || 'kozepes';
+    let szoveg = document.querySelector('#difficulty-btn').textContent.replace('Nehézség:', '').trim();
+    return szintNevek[szoveg] || 'kozepes';
 }
 
 rendelesekLeallitasa();

@@ -345,6 +345,7 @@ header {
     height: auto;
     display: block;
 }
+
 .pita-area img:hover {
     transform: translateY(-6px) scale(1.04);
     filter: drop-shadow(0 0 12px #ffaa3cd9);
@@ -716,6 +717,7 @@ header {
         opacity: 1;
     }
 }
+
 .ticket-timer {
     position: absolute;
     top: 2%;
