@@ -346,14 +346,6 @@ header {
     display: block;
 }
 
-.pita-area img:hover {
-    transform: translateY(-6px) scale(1.04);
-    filter: drop-shadow(0 0 12px #ffaa3cd9);
-}
-
-.pita-area img:active {
-    transform: scale(0.96);
-}
 
 .plate-area {
     --plate-w: min(26vw, 36vh * 1.33);
@@ -384,6 +376,17 @@ header {
     justify-content: center;
     z-index: 3;
 }
+
+.pita-area img:hover {
+    transform: translateY(-6px) scale(1.04);
+    filter: drop-shadow(0 0 12px #ffaa3cd9);
+}
+
+.pita-area img:active {
+    transform: scale(0.96);
+}
+
+
 
 .trash-placeholder {
     font-size: 48px;
@@ -583,26 +586,6 @@ header {
     }
 }
 
-.ticket-list {
-    position: absolute;
-    left: 9.8%;
-    right: 9.9%;
-    top: 30.1%;
-    font-size: 8cqw;
-    line-height: 1;
-    color: #3a2a2a;
-}
-
-.ticket-list li {
-    display: flex;
-    align-items: center;
-    height: 6.95cqw;
-}
-
-.ticket-list .qty {
-    flex: 0 0 18.5%;
-    text-align: center;
-}
 
 .ticket-list .item {
     flex: 1;
@@ -645,6 +628,18 @@ header {
     margin-right: calc(var(--cetli) * -1);
 }
 
+.penz {
+    position: absolute;
+    right: 14px;
+    top: 7px;
+    pointer-events: none;
+}
+
+.kiadas {
+    color: #ff3c3c;
+    animation: penzKi 1.2s ease-out forwards;
+}
+
 .uzenet {
     width: max-content;
     max-width: 90vw;
@@ -679,21 +674,31 @@ header {
     position: relative;
 }
 
-.penz {
-    position: absolute;
-    right: 14px;
-    top: 7px;
-    pointer-events: none;
-}
-
-.kiadas {
-    color: #ff3c3c;
-    animation: penzKi 1.2s ease-out forwards;
-}
 
 .bevetel {
     color: #3df53d;
     animation: penzBe 1.2s ease-in forwards;
+}
+
+.ticket-list {
+    position: absolute;
+    left: 9.8%;
+    right: 9.9%;
+    top: 30.1%;
+    font-size: 8cqw;
+    line-height: 1;
+    color: #3a2a2a;
+}
+
+.ticket-list li {
+    display: flex;
+    align-items: center;
+    height: 6.95cqw;
+}
+
+.ticket-list .qty {
+    flex: 0 0 18.5%;
+    text-align: center;
 }
 
 @keyframes penzKi {

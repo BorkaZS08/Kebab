@@ -96,11 +96,11 @@ function jatekVege(cim) {
     }, 400);
 }
 
-function hibazas() {
-    hibak++;
-    hibaFrissites();
-    if (hibak == nehezseg.hibak) jatekVege("Vesztettél!");
+function gyujtesGomb() {
+    document.querySelector(".collectBtn").disabled = klikkSzam != 6;
 }
+
+
 
 function hibaFrissites() {
     document.querySelector(".hibak").textContent = hibak + "/" + nehezseg.hibak;
@@ -112,6 +112,20 @@ function pontFrissites() {
 
 function husFrissites() {
     document.querySelector(".hus-szam").textContent = husAdag + "/5";
+}
+
+
+function collect() {
+    if (husAdag > 0) {
+        uzenet("Még maradt hús a hozzávalóknál!");
+        return;
+    }
+    csere(".tray-full", ".tray-empty");
+    document.querySelector(".buyBtn").disabled = false;
+    husAdag = 5;
+    klikkSzam = 7;
+    husFrissites();
+    gyujtesGomb();
 }
 
 function ujJatek() {
@@ -131,23 +145,6 @@ function ujJatek() {
     hibaFrissites();
     husFrissites();
     pontFrissites();
-}
-
-function gyujtesGomb() {
-    document.querySelector(".collectBtn").disabled = klikkSzam != 6;
-}
-
-function collect() {
-    if (husAdag > 0) {
-        uzenet("Még maradt hús a hozzávalóknál!");
-        return;
-    }
-    csere(".tray-full", ".tray-empty");
-    document.querySelector(".buyBtn").disabled = false;
-    husAdag = 5;
-    klikkSzam = 7;
-    husFrissites();
-    gyujtesGomb();
 }
 
 function vetel() {
@@ -182,6 +179,12 @@ function penzMozgas(osszeg) {
         felirat.remove();
         egyenlegFrissites();
     });
+}
+
+function hibazas() {
+    hibak++;
+    hibaFrissites();
+    if (hibak == nehezseg.hibak) jatekVege("Vesztettél!");
 }
 
 collectArea.addEventListener("click", () => {
