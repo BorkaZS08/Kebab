@@ -126,7 +126,7 @@ function rendelesekInditasa() {
 }
 
 function aktualisSzint() {
-  let szoveg = document.getElementById('difficulty-btn').textContent.replace('Nehézség:', '').trim();
+  let szoveg = document.querySelector('#difficulty-btn').textContent.replace('Nehézség:', '').trim();
   return szintNevek[szoveg] || 'kozepes';
 }
 
