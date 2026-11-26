@@ -43,6 +43,8 @@ class Kebab {
 
 
     fall() {
+        if (this.#fallInterval) return;
+
         this.#fallInterval = setInterval(() => {
             this.#y += this.#speed;
             this.#element.style.top = this.#y + "px";
