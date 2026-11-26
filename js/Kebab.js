@@ -1,13 +1,13 @@
 class Kebab {
+
     #x;
     #y;
     #speed;
-    #isApple;
     #container;
     #element;
     #fallInterval;
 
-    static #score = 0;
+    static pont = 0;
 
     constructor(x, y, speed, container) {
         this.setX(x);

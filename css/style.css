@@ -23,7 +23,7 @@ body {
     position: fixed;
     inset: 0;
     background-image:
-        linear-gradient(rgba(65, 65, 65, 0.5), rgba(65, 65, 65, 0.5)),
+        linear-gradient(#41414180, #41414180),
         url(../img/kebab-background.jpeg);
     background-repeat: no-repeat;
     background-position: center;
@@ -47,10 +47,10 @@ header {
     justify-content: center;
 }
 
-.cim {
+.menu-title {
     margin: 0 0 2vh;
-    font-size: clamp(36px, 9vh, 80px);
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+    font-size: 80px;
+    text-shadow: 2px 2px 8px #000000b2;
 }
 
 .menu-logo {
@@ -58,36 +58,23 @@ header {
     max-height: 30vh;
 }
 
-.menu-buttons {
-    margin-top: 5vh;
-}
-
-.menu-dropdown {
-    margin-top: 3vh;
-}
-
-.menu-btn {
-    font-size: clamp(18px, 3.5vh, 28px);
-    padding: 1.5vh 16px;
-}
-
 .jatek,
 .dropd,
 .nehezseg:hover {
-    background-color: rgb(242, 124, 26);
+    background-color: #f27c1a;
 }
 
 .jatek:hover,
 .nehezseg {
-    background-color: rgb(100, 100, 100);
+    background-color: #646464;
 }
 
 .dropd .dropdown-item:hover {
-    background-color: rgb(100, 100, 100);
+    background-color: #646464;
 }
 
 .nev {
-    color: rgb(255, 115, 0);
+    color: #ff7300;
 }
 
 .jatek,
@@ -213,7 +200,7 @@ header {
 
 .diff-badge {
     font-size: 20px;
-    background: rgba(40, 40, 40, 0.75);
+    background: #282828bf;
     border-radius: 6px;
     padding: 7px 14px;
 }
@@ -254,52 +241,6 @@ header {
     z-index: 2;
 }
 
-.orders {
-    position: absolute;
-    top: 5vh;
-    left: 32vw;
-    display: flex;
-    gap: 15px;
-    z-index: 3;
-}
-
-.order-ticket {
-    width: 80px;
-    height: 140px;
-    background: #f4f1e8;
-    border-top: 3px solid #333;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 5px;
-    font-size: 11px;
-}
-
-.order-title {
-    font-weight: 700;
-    border-bottom: 1px solid #333;
-    margin-bottom: 8px;
-    white-space: nowrap;
-}
-
-.order-lines {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    width: 70%;
-}
-
-.order-lines span {
-    height: 2px;
-    background: #444;
-}
-
-.order-timer {
-    margin-top: auto;
-    font-weight: 600;
-}
-
 .tray-area {
     position: absolute;
     left: 2vw;
@@ -327,9 +268,9 @@ header {
 
 .contents-label {
     color: #fff;
-    font-size: clamp(12px, 1vw, 16px);
+    font-size: 35px;
     font-weight: 600;
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+    text-shadow: 1px 1px 4px #000000cc;
 }
 
 .contents-panel {
@@ -337,11 +278,8 @@ header {
     height: 15vh;
     background: linear-gradient(#c9c9c9, #a3a3a3);
     border-radius: 4px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 10px #0000004c;
     padding: 6px 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
     position: relative;
     z-index: 4;
     overflow: hidden;
@@ -351,33 +289,18 @@ header {
     list-style: none;
     margin: 0;
     padding: 0;
-    font-size: clamp(13px, 1.2vw, 18px);
+    font-size: 25px;
     line-height: 1.1;
     color: #222;
     columns: 2;
     column-gap: 10px;
     overflow-y: auto;
     overflow-x: hidden;
-    overflow-y: auto;
     word-break: break-word;
 }
 
 .contents-list li {
     break-inside: avoid;
-}
-
-.contents-panel span {
-    height: 4px;
-    border-radius: 2px;
-    background: #ececec;
-}
-
-.contents-panel span:nth-child(4) {
-    width: 70%;
-}
-
-.contents-panel span:nth-child(5) {
-    width: 50%;
 }
 
 .pita-area {
@@ -392,7 +315,6 @@ header {
 .pita-area img {
     display: block;
     width: 100%;
-    max-width: 100%;
     height: auto;
     cursor: pointer;
     transform-origin: bottom center;
@@ -425,7 +347,7 @@ header {
 }
 .pita-area img:hover {
     transform: translateY(-6px) scale(1.04);
-    filter: drop-shadow(0 0 12px rgba(255, 170, 60, 0.85));
+    filter: drop-shadow(0 0 12px #ffaa3cd9);
 }
 
 .pita-area img:active {
@@ -463,7 +385,7 @@ header {
 }
 
 .trash-placeholder {
-    font-size: clamp(24px, 3vw, 48px);
+    font-size: 48px;
     opacity: 0.85;
 }
 
@@ -479,8 +401,8 @@ header {
 }
 
 .kebab {
-    width: clamp(28px, 5.5vh, 50px);
-    height: clamp(28px, 5.5vh, 50px);
+    width: 50px;
+    height: 50px;
     background-image: url(../img/KebabPiece.png);
     background-size: contain;
     background-repeat: no-repeat;
@@ -491,7 +413,7 @@ header {
     position: absolute;
     right: 21%;
     bottom: 6%;
-    font-size: clamp(13px, 1.8vh, 18px);
+    font-size: 18px;
     padding: 0.3em 0.8em;
     z-index: 5;
 }
@@ -500,13 +422,9 @@ header {
     position: absolute;
     left: 33%;
     bottom: 6%;
-    font-size: clamp(13px, 1.8vh, 18px);
+    font-size: 18px;
     padding: 0.3em 0.8em;
     z-index: 5;
-}
-
-.Currency .AvailableCurrency {
-    text-shadow: none;
 }
 
 .ingredient-hitbox {
@@ -522,13 +440,16 @@ header {
 
 .ingredient-hitbox:hover,
 .ingredient-hitbox:active {
-    background: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 0 12px rgba(255, 170, 60, 0.85);
+    background: #ffffff26;
+    box-shadow: 0 0 12px #ffaa3cd9;
 }
 
 .AvailableCurrency {
-    color: rgb(61, 245, 61);
-    text-shadow: -2px -2px 0 rgb(255, 255, 255), 2px -2px 0 #ffffff, -2px 2px 0 rgb(255, 255, 255), 2px 2px 0 rgb(255, 255, 255);
+    color: #3df53d;
+}
+
+.pont {
+    color: #ff7300;
 }
 
 
@@ -544,11 +465,6 @@ header {
 
     .order-rail {
         left: 38vw;
-    }
-
-    .order-ticket {
-        width: 13vw;
-        height: 24vh;
     }
 
     .tray-area {
@@ -610,16 +526,6 @@ header {
     .order-rail {
         top: calc(52px + 2vh);
         left: 31vw;
-    }
-
-    .orders {
-        flex-direction: column;
-        gap: 1.5vh;
-    }
-
-    .order-ticket {
-        width: 30vw;
-        height: 18vh;
     }
 
     .tray-area {
@@ -729,7 +635,7 @@ header {
 }
 
 .ticket-total:hover {
-    background: rgba(179, 38, 43, 0.15);
+    background: #b3262b26;
 }
 
 .rejtett {
@@ -765,7 +671,7 @@ header {
 
 .eredmeny {
     font-size: 24px;
-    background: rgb(60, 60, 60);
+    background: #3c3c3c;
 }
 
 .Currency {
@@ -780,12 +686,12 @@ header {
 }
 
 .kiadas {
-    color: rgb(255, 60, 60);
+    color: #ff3c3c;
     animation: penzKi 1.2s ease-out forwards;
 }
 
 .bevetel {
-    color: rgb(61, 245, 61);
+    color: #3df53d;
     animation: penzBe 1.2s ease-in forwards;
 }
 
@@ -844,8 +750,7 @@ header {
 
 @media (max-width: 1024px) {
 
-    .menu-item,
-    #start-btn {
+    .menu-item {
         width: min(60vw, 380px) !important;
     }
 }

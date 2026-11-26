@@ -16,14 +16,13 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 text-center">
-                        <h1 class="text-center cim text-white fw-bold p-4 menu-title"><span class="nev">GoRka
+                        <h1 class="text-center text-white fw-bold p-4 menu-title"><span class="nev">GoRka
                             </span>Kebab</h1>
-                        <img src="img/gorkakebab (2).png" alt="GoRka Kebab Logo" class="img-fluid menu-logo"
-                            style="max-width: 250px;">
+                        <img src="img/gorkakebab (2).png" alt="GoRka Kebab Logo" class="img-fluid menu-logo">
                     </div>
                 </div>
             </div>
-            <section class="text-center mt-5">
+            <div class="text-center mt-5">
                 <button id="start-btn" type="button" class="btn text-white p-3 w-25 fs-3 fw-bold jatek menu-item"
                     style="--delay: 0.9s">Játék</button><br>
 
@@ -32,21 +31,24 @@
                         type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Nehézség
                     </button>
-                    <ul class="dropdown-menu dropd w-100 text-center">
+                    <ul class="dropdown-menu dropd w-100 text-center fs-2">
                         <li><a class="dropdown-item text-white fw-bold" href="#">Könnyű</a></li>
                         <li><a class="dropdown-item text-white fw-bold" href="#">Közepes</a></li>
                         <li><a class="dropdown-item text-white fw-bold" href="#">Nehéz</a></li>
                     </ul>
                 </div>
         </div>
+    </div>
     </header>
     <main>
+        <section>
         <div id="game-screen" class="screen d-none">
             <div class="game-topbar">
                 <button id="back-btn" type="button" class="btn nehezseg text-white fw-bold">← Menü</button>
                 <span class="diff-badge text-white fw-bold">Nehézség: <span id="game-difficulty"></span></span>
                 <span class="Currency diff-badge text-white fw-bold">Egyenleg: <span
                         class="AvailableCurrency">$200</span></span>
+                <span class="diff-badge text-white fw-bold">Pont: <span id="pont-kijelzo" class="pont">0</span></span>
                 <span class="diff-badge text-white fw-bold">Hibák: <span class="hibak"></span></span>
             </div>
 
@@ -81,8 +83,6 @@
                     </div>
                 </div>
 
-                <div class="orders"></div>
-
                 <div class="counter"></div>
 
                 <div class="tray-area">
@@ -96,7 +96,7 @@
                 </div>
 
                 <div class="serve-area">
-                    <div class="contents-label d-none">Kebab tartalma:</div>
+                    <div class="contents-label text-center d-none">Kebab tartalma:</div>
                     <div class="contents-panel d-none">
                         <ul class="contents-list"></ul>
 
@@ -129,17 +129,13 @@
         </div>
     </div>
 
-    <footer>
-
-    </footer>
-
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/Orders.js"></script>
     <script src="js/Kebab.js"></script>
     <script src="js/Screen.js"></script>
     <script src="js/Difficulty.js"></script>
-    <script src="js/script.js"></script>
     <script src="js/OrdersTest.js"></script>
+    <script src="js/script.js"></script>
 </body>
 
 </html>

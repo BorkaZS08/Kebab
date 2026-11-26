@@ -1,14 +1,18 @@
+// A sorrend megegyezik a tálcán lévő hozzávalók sorrendjével (balról jobbra)
 const arak = {
-    'Hús': 40,
     'Hagyma': 20,
     'Saláta': 24,
     'Paradicsom': 28,
     'Lilakáposzta': 32,
-    'Uborka': 36
+    'Uborka': 36,
+    'Hús': 40
 };
 
-const hozzavalok = ['Hagyma', 'Saláta', 'Paradicsom', 'Lilakáposzta', 'Uborka'];
+// ---Ai---
 
+const hozzavalok = Object.keys(arak).filter((nev) => nev !== 'Hús');
+
+// --------
 const nehezsegek = {
     konnyu: { min: 8, max: 15, idoMin: 60, idoMax: 90, hibak: 5 },
     kozepes: { min: 4, max: 10, idoMin: 40, idoMax: 70, hibak: 3 },
@@ -18,7 +22,6 @@ const nehezsegek = {
 const szintNevek = { 'Könnyű': 'konnyu', 'Közepes': 'kozepes', 'Nehéz': 'nehez' };
 
 let nehezseg = nehezsegek.kozepes;
-let valasztottSzint = 'kozepes';
 
 function veletlen(min, max) {
     return min + Math.floor(Math.random() * (max - min + 1));
@@ -55,7 +58,7 @@ function ujRendeles(cetli) {
 
     // Ai --
 function leadas(cetli) {
-    let tartalom = [...contentsList.children].map((li) => li.textContent);
+    let tartalom = tanyerTartalma();
 
     if (tartalom.length != cetli.lista.length || !cetli.lista.every((nev) => tartalom.includes(nev))) {
         uzenet('Ez a kebab nem felel meg az elvárásoknak!');
@@ -63,6 +66,8 @@ function leadas(cetli) {
     }
 
     penzMozgas(cetli.osszeg);
+    Kebab.pont++;
+    pontFrissites();
     tanyerUrites();
     lejart(cetli);
 }

@@ -2,7 +2,6 @@ var menu = new Screen("#menu-screen");
 var game = new Screen("#game-screen");
 var difficulty = new Difficulty("#difficulty-btn", "Közepes");
 
-var gameInterval = null;
 var collectArea = document.querySelector(".collectArea");
 
 var startBtn = document.querySelector("#start-btn");
@@ -15,41 +14,38 @@ var egyenleg = 200;
 var kezdes = 0;
 var hibak = 0;
 var modal = document.querySelector("#eredmeny-modal");
-["Hagyma", "Saláta", "Paradicsom", "Lilakáposzta", "Uborka", "Hús"].forEach((name, i) =>
+
+// ---Ai---
+
+Object.keys(arak).forEach((name, i) =>
     document.querySelector(".tray-area").insertAdjacentHTML("beforeend", `<div class="ingredient-hitbox" data-ingredient="${name}" style="--i:${i}"></div>`));
 
 document.querySelector(".tray-area").addEventListener("click", (e) => {
     var hitbox = e.target.closest(".ingredient-hitbox");
     if (!hitbox) return;
     var name = hitbox.dataset.ingredient;
-    var ok = hidden(".plate-empty") && !(name === "Hús" && hidden(".tray-full")) && ![...contentsList.children].some((li) => li.textContent === name);
+    var ok = hidden(".plate-empty") && !(name === "Hús" && hidden(".tray-full")) && !tanyerTartalma().includes(name);
     if (ok) {
         contentsList.insertAdjacentHTML("beforeend", `<li>${name}</li>`);
-        document.querySelector(".pita-plate").classList.add("d-none");
-        document.querySelector(".plate-full").classList.remove("d-none");
+        csere(".plate-full", ".pita-plate");
         if (name === "Hús") {
             husAdag--;
             husFrissites();
-            if (husAdag == 0) {
-                document.querySelector(".tray-full").classList.add("d-none");
-                document.querySelector(".tray-empty").classList.remove("d-none");
-            }
+            if (husAdag == 0) csere(".tray-empty", ".tray-full");
         }
     }
-    hitbox.animate([{ background: ok ? "rgba(255, 220, 120, 0.55)" : "rgba(255, 40, 40, 0.45)" }, {}], 300);
+    hitbox.animate([{ background: ok ? "#ffdc788c" : "#ff282873" }, {}], 300);
 });
 
+///
 document.querySelector(".pita-area").addEventListener("click", () => {
     if (hidden(".plate-empty")) return;
-    document.querySelector(".plate-empty").classList.add("d-none")
-    document.querySelector(".pita-plate").classList.remove("d-none");
+    csere(".pita-plate", ".plate-empty");
     showContents(true);
 })
 
 function tanyerUrites() {
-    document.querySelector(".pita-plate").classList.add("d-none");
-    document.querySelector(".plate-full").classList.add("d-none");
-    document.querySelector(".plate-empty").classList.remove("d-none");
+    csere(".plate-empty", ".pita-plate", ".plate-full");
     contentsList.innerHTML = "";
     showContents(false);
 }
@@ -96,7 +92,7 @@ function jatekVege(cim) {
     game.hide();
     setTimeout(() => {
         menu.show();
-        ablak(cim, `Játékidő: ${ido}<br>Egyenleg: $${egyenleg}`);
+        ablak(cim, `Játékidő: ${ido}<br>Egyenleg: $${egyenleg}<br>Pont: <span class="pont">${Kebab.pont}</span>`);
     }, 400);
 }
 
@@ -110,6 +106,10 @@ function hibaFrissites() {
     document.querySelector(".hibak").textContent = hibak + "/" + nehezseg.hibak;
 }
 
+function pontFrissites() {
+    document.querySelector("#pont-kijelzo").textContent = Kebab.pont;
+}
+
 function husFrissites() {
     document.querySelector(".hus-szam").textContent = husAdag + "/5";
 }
@@ -119,11 +119,10 @@ function ujJatek() {
     husAdag = 0;
     klikkSzam = 0;
     hibak = 0;
+    Kebab.pont = 0;
     nehezseg = nehezsegek[aktualisSzint()];
-    document.querySelector(".grill-full").classList.remove("d-none");
-    document.querySelector(".grill-empty").classList.add("d-none");
-    document.querySelector(".tray-empty").classList.remove("d-none");
-    document.querySelector(".tray-full").classList.add("d-none");
+    csere(".grill-full", ".grill-empty");
+    csere(".tray-empty", ".tray-full");
     document.querySelector(".buyBtn").disabled = true;
     document.querySelectorAll(".penz").forEach((felirat) => felirat.remove());
     tanyerUrites();
@@ -131,6 +130,7 @@ function ujJatek() {
     egyenlegFrissites();
     hibaFrissites();
     husFrissites();
+    pontFrissites();
 }
 
 function gyujtesGomb() {
@@ -142,8 +142,7 @@ function collect() {
         uzenet("Még maradt hús a hozzávalóknál!");
         return;
     }
-    document.querySelector(".tray-empty").classList.add("d-none")
-    document.querySelector(".tray-full").classList.remove("d-none")
+    csere(".tray-full", ".tray-empty");
     document.querySelector(".buyBtn").disabled = false;
     husAdag = 5;
     klikkSzam = 7;
@@ -159,8 +158,7 @@ function vetel() {
     penzMozgas(-50);
     klikkSzam = 0;
     document.querySelector(".buyBtn").disabled = true;
-    document.querySelector(".grill-empty").classList.add("d-none");
-    document.querySelector(".grill-full").classList.remove("d-none");
+    csere(".grill-full", ".grill-empty");
 }
 
 function uzenet(szoveg) {
@@ -186,7 +184,7 @@ function penzMozgas(osszeg) {
     });
 }
 
-document.querySelector(".collectArea").addEventListener("click", () => {
+collectArea.addEventListener("click", () => {
     if (klikkSzam <= 5) {
         var x = Math.random() * (collectArea.offsetWidth - 30);
         var speed = 3;
@@ -194,8 +192,7 @@ document.querySelector(".collectArea").addEventListener("click", () => {
         klikkSzam++;
         kebab.fall();
         if (klikkSzam == 5) {
-            document.querySelector(".grill-full").classList.add("d-none")
-            document.querySelector(".grill-empty").classList.remove("d-none")
+            csere(".grill-empty", ".grill-full");
             klikkSzam++
             gyujtesGomb();
         }
@@ -205,4 +202,10 @@ document.querySelector(".collectArea").addEventListener("click", () => {
 
 var contentsList = document.querySelector(".contents-list");
 var hidden = (sel) => document.querySelector(sel).classList.contains("d-none");
+var tanyerTartalma = () => [...contentsList.children].map((li) => li.textContent);
+
+function csere(mutat, ...elrejt) {
+    document.querySelector(mutat).classList.remove("d-none");
+    elrejt.forEach((sel) => document.querySelector(sel).classList.add("d-none"));
+}
 var showContents = (show) => document.querySelectorAll(".contents-label, .contents-panel").forEach((el) => el.classList.toggle("d-none", !show));
